@@ -32,176 +32,100 @@ public static class MarchingSquares
 
                 if (squareIndex == 1)
                 {
-                    vertices.Add(bottomLeft);
-                    vertices.Add(leftEdge);
-                    vertices.Add(bottomEdge);
+                    CreateTriangle(bottomLeft, leftEdge, bottomEdge, vertices);
                 }
                 else if (squareIndex == 2)
                 {
-                    vertices.Add(bottomEdge);
-                    vertices.Add(rightEdge);
-                    vertices.Add(bottomRight);
+                    CreateTriangle(bottomEdge, rightEdge, bottomRight, vertices);
                 }
                 else if (squareIndex == 3)
                 {
-                    vertices.Add(leftEdge);
-                    vertices.Add(bottomRight);
-                    vertices.Add(bottomLeft);
-                    vertices.Add(leftEdge);
-                    vertices.Add(rightEdge);
-                    vertices.Add(bottomRight);
+                    CreateTriangle(leftEdge, bottomRight, bottomLeft, vertices);
+                    CreateTriangle(leftEdge, rightEdge, bottomRight, vertices);
                 }
                 else if (squareIndex == 4)
                 {
-                    vertices.Add(topEdge);
-                    vertices.Add(topRight);
-                    vertices.Add(rightEdge);
+                    CreateTriangle(topEdge, topRight, rightEdge, vertices);
                 }
                 else if (squareIndex == 5)
                 {
                     float average = (voxelDensities.Corner1 + voxelDensities.Corner2 + voxelDensities.Corner3 + voxelDensities.Corner4) / 4f;
                     if (average < isolevel)
                     {
-                        vertices.Add(bottomLeft);
-                        vertices.Add(leftEdge);
-                        vertices.Add(bottomEdge);
-                        vertices.Add(leftEdge);
-                        vertices.Add(rightEdge);
-                        vertices.Add(bottomEdge);
-                        vertices.Add(leftEdge);
-                        vertices.Add(topEdge);
-                        vertices.Add(rightEdge);
-                        vertices.Add(topEdge);
-                        vertices.Add(topRight);
-                        vertices.Add(rightEdge);
+                        CreateTriangle(bottomLeft, leftEdge, bottomEdge, vertices);
+                        CreateTriangle(leftEdge, rightEdge, bottomEdge, vertices);
+                        CreateTriangle(leftEdge, topEdge, rightEdge, vertices);
+                        CreateTriangle(topEdge, topRight, rightEdge, vertices);
                     }
                     else
                     {
-                        vertices.Add(bottomLeft);
-                        vertices.Add(leftEdge);
-                        vertices.Add(bottomEdge);
-                        vertices.Add(topEdge);
-                        vertices.Add(topRight);
-                        vertices.Add(rightEdge);
+                        CreateTriangle(bottomLeft, leftEdge, bottomEdge, vertices);
+                        CreateTriangle(topEdge, topRight, rightEdge, vertices);
                     }
                 }
                 else if (squareIndex == 6)
                 {
-                    vertices.Add(topEdge);
-                    vertices.Add(topRight);
-                    vertices.Add(bottomRight);
-                    vertices.Add(topEdge);
-                    vertices.Add(bottomRight);
-                    vertices.Add(bottomEdge);
+                    CreateTriangle(topEdge, topRight, bottomRight, vertices);
+                    CreateTriangle(topEdge, bottomRight, bottomEdge, vertices);
                 }
                 else if (squareIndex == 7)
                 {
-                    vertices.Add(leftEdge);
-                    vertices.Add(bottomRight);
-                    vertices.Add(bottomLeft);
-                    vertices.Add(leftEdge);
-                    vertices.Add(topEdge);
-                    vertices.Add(bottomRight);
-                    vertices.Add(topEdge);
-                    vertices.Add(topRight);
-                    vertices.Add(bottomRight);
+                    CreateTriangle(leftEdge, bottomRight, bottomLeft, vertices);
+                    CreateTriangle(leftEdge, topEdge, bottomRight, vertices);
+                    CreateTriangle(topEdge, topRight, bottomRight, vertices);
                 }
                 else if (squareIndex == 8)
                 {
-                    vertices.Add(topLeft);
-                    vertices.Add(topEdge);
-                    vertices.Add(leftEdge);
+                    CreateTriangle(topLeft, topEdge, leftEdge, vertices);
                 }
                 else if (squareIndex == 9)
                 {
-                    vertices.Add(topLeft);
-                    vertices.Add(topEdge);
-                    vertices.Add(bottomEdge);
-                    vertices.Add(topLeft);
-                    vertices.Add(bottomEdge);
-                    vertices.Add(bottomLeft);
+                    CreateTriangle(topLeft, topEdge, bottomEdge, vertices);
+                    CreateTriangle(topLeft, bottomEdge, bottomLeft, vertices);
                 }
                 else if(squareIndex == 10)
                 {
                     float average = (voxelDensities.Corner1 + voxelDensities.Corner2 + voxelDensities.Corner3 + voxelDensities.Corner4) / 4f;
                     if (average < isolevel)
                     {
-                        vertices.Add(topLeft);
-                        vertices.Add(topEdge);
-                        vertices.Add(leftEdge);
-                        vertices.Add(leftEdge);
-                        vertices.Add(topEdge);
-                        vertices.Add(rightEdge);
-                        vertices.Add(leftEdge);
-                        vertices.Add(rightEdge);
-                        vertices.Add(bottomEdge);
-                        vertices.Add(bottomEdge);
-                        vertices.Add(rightEdge);
-                        vertices.Add(bottomRight);
+                        CreateTriangle(topLeft, topEdge, leftEdge, vertices);
+                        CreateTriangle(leftEdge, topEdge, rightEdge, vertices);
+                        CreateTriangle(leftEdge, rightEdge, bottomEdge, vertices);
+                        CreateTriangle(bottomEdge, rightEdge, bottomRight, vertices);
                     }
                     else
                     {
-                        vertices.Add(bottomEdge);
-                        vertices.Add(rightEdge);
-                        vertices.Add(bottomRight);
-                        vertices.Add(topLeft);
-                        vertices.Add(topEdge);
-                        vertices.Add(leftEdge);
+                        CreateTriangle(bottomEdge, rightEdge, bottomRight, vertices);
+                        CreateTriangle(topLeft, topEdge, leftEdge, vertices);
                     }
                 }
                 else if(squareIndex == 11)
                 {
-                    vertices.Add(topLeft);
-                    vertices.Add(topEdge);
-                    vertices.Add(bottomLeft);
-                    vertices.Add(bottomLeft);
-                    vertices.Add(topEdge);
-                    vertices.Add(rightEdge);
-                    vertices.Add(bottomLeft);
-                    vertices.Add(rightEdge);
-                    vertices.Add(bottomRight);
+                    CreateTriangle(topLeft, topEdge, bottomLeft, vertices);
+                    CreateTriangle(bottomLeft, topEdge, rightEdge, vertices);
+                    CreateTriangle(bottomLeft, rightEdge, bottomRight, vertices);
                 }
                 else if(squareIndex == 12)
                 {
-                    vertices.Add(topLeft);
-                    vertices.Add(topRight);
-                    vertices.Add(leftEdge);
-                    vertices.Add(leftEdge);
-                    vertices.Add(topRight);
-                    vertices.Add(rightEdge);
+                    CreateTriangle(topLeft, topRight, leftEdge, vertices);
+                    CreateTriangle(leftEdge, topRight, rightEdge, vertices);
                 }
                 else if(squareIndex == 13)
                 {
-                    vertices.Add(bottomLeft);
-                    vertices.Add(topLeft);
-                    vertices.Add(bottomEdge);
-                    vertices.Add(topLeft);
-                    vertices.Add(rightEdge);
-                    vertices.Add(bottomEdge);
-                    vertices.Add(topLeft);
-                    vertices.Add(topRight);
-                    vertices.Add(rightEdge);
+                    CreateTriangle(bottomLeft, topLeft, bottomEdge, vertices);
+                    CreateTriangle(topLeft, rightEdge, bottomEdge, vertices);
+                    CreateTriangle(topLeft, topRight, rightEdge, vertices);
                 }
                 else if(squareIndex == 14)
                 {
-                    vertices.Add(topLeft);
-                    vertices.Add(topRight);
-                    vertices.Add(leftEdge);
-                    vertices.Add(leftEdge);
-                    vertices.Add(topRight);
-                    vertices.Add(bottomEdge);
-                    vertices.Add(bottomEdge);
-                    vertices.Add(topRight);
-                    vertices.Add(bottomRight);
+                    CreateTriangle(topLeft, topRight, leftEdge, vertices);
+                    CreateTriangle(leftEdge, topRight, bottomEdge, vertices);
+                    CreateTriangle(bottomEdge, topRight, bottomRight, vertices);
                 }
                 else if(squareIndex == 15)
                 {
-                    vertices.Add(bottomLeft);
-                    vertices.Add(topLeft);
-                    vertices.Add(bottomRight);
-                    vertices.Add(topLeft);
-                    vertices.Add(topRight);
-                    vertices.Add(bottomRight);
+                    CreateTriangle(bottomLeft, topLeft, bottomRight, vertices);
+                    CreateTriangle(topLeft, topRight, bottomRight, vertices);
                 }
             }
         }
@@ -214,6 +138,13 @@ public static class MarchingSquares
         mesh.SetTriangles(triangles, 0);
 
         return mesh;
+    }
+
+    private static void CreateTriangle(Vector2 a, Vector2 b, Vector2 c, List<Vector3> vertices)
+    {
+        vertices.Add(a);
+        vertices.Add(b);
+        vertices.Add(c);
     }
 
     private static int[] CreateTriangles(int vertexCount)
