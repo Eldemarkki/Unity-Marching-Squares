@@ -7,7 +7,6 @@ public static class MarchingSquares
     public static Mesh CreateMesh(NativeArray<float> densities, int chunkSize, float isolevel)
     {
         List<Vector3> vertices = new List<Vector3>();
-        List<int> triangles = new List<int>();
 
         for (int x = 0; x < chunkSize; x++)
         {
@@ -36,18 +35,12 @@ public static class MarchingSquares
                     vertices.Add(bottomLeft);
                     vertices.Add(leftEdge);
                     vertices.Add(bottomEdge);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 2)
                 {
                     vertices.Add(bottomEdge);
                     vertices.Add(rightEdge);
                     vertices.Add(bottomRight);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 3)
                 {
@@ -57,21 +50,12 @@ public static class MarchingSquares
                     vertices.Add(leftEdge);
                     vertices.Add(rightEdge);
                     vertices.Add(bottomRight);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 4)
                 {
                     vertices.Add(topEdge);
                     vertices.Add(topRight);
                     vertices.Add(rightEdge);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 5)
                 {
@@ -90,18 +74,6 @@ public static class MarchingSquares
                         vertices.Add(topEdge);
                         vertices.Add(topRight);
                         vertices.Add(rightEdge);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
                     }
                     else
                     {
@@ -111,12 +83,6 @@ public static class MarchingSquares
                         vertices.Add(topEdge);
                         vertices.Add(topRight);
                         vertices.Add(rightEdge);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
                     }
                 }
                 else if (squareIndex == 6)
@@ -127,12 +93,6 @@ public static class MarchingSquares
                     vertices.Add(topEdge);
                     vertices.Add(bottomRight);
                     vertices.Add(bottomEdge);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 7)
                 {
@@ -145,24 +105,12 @@ public static class MarchingSquares
                     vertices.Add(topEdge);
                     vertices.Add(topRight);
                     vertices.Add(bottomRight);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 8)
                 {
                     vertices.Add(topLeft);
                     vertices.Add(topEdge);
                     vertices.Add(leftEdge);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if (squareIndex == 9)
                 {
@@ -172,12 +120,6 @@ public static class MarchingSquares
                     vertices.Add(topLeft);
                     vertices.Add(bottomEdge);
                     vertices.Add(bottomLeft);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if(squareIndex == 10)
                 {
@@ -196,18 +138,6 @@ public static class MarchingSquares
                         vertices.Add(bottomEdge);
                         vertices.Add(rightEdge);
                         vertices.Add(bottomRight);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
                     }
                     else
                     {
@@ -217,12 +147,6 @@ public static class MarchingSquares
                         vertices.Add(topLeft);
                         vertices.Add(topEdge);
                         vertices.Add(leftEdge);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
-                        triangles.Add(triangles.Count);
                     }
                 }
                 else if(squareIndex == 11)
@@ -236,15 +160,6 @@ public static class MarchingSquares
                     vertices.Add(bottomLeft);
                     vertices.Add(rightEdge);
                     vertices.Add(bottomRight);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if(squareIndex == 12)
                 {
@@ -254,12 +169,6 @@ public static class MarchingSquares
                     vertices.Add(leftEdge);
                     vertices.Add(topRight);
                     vertices.Add(rightEdge);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if(squareIndex == 13)
                 {
@@ -272,15 +181,6 @@ public static class MarchingSquares
                     vertices.Add(topLeft);
                     vertices.Add(topRight);
                     vertices.Add(rightEdge);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if(squareIndex == 14)
                 {
@@ -293,15 +193,6 @@ public static class MarchingSquares
                     vertices.Add(bottomEdge);
                     vertices.Add(topRight);
                     vertices.Add(bottomRight);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
                 else if(squareIndex == 15)
                 {
@@ -311,22 +202,29 @@ public static class MarchingSquares
                     vertices.Add(topLeft);
                     vertices.Add(topRight);
                     vertices.Add(bottomRight);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
-                    triangles.Add(triangles.Count);
                 }
             }
         }
 
         Mesh mesh = new Mesh();
 
+        int[] triangles = CreateTriangles(vertices.Count);
+
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
 
         return mesh;
+    }
+
+    private static int[] CreateTriangles(int vertexCount)
+    {
+        int[] triangles = new int[vertexCount];
+        for (int i = 0; i < vertexCount; i++)
+        {
+            triangles[i] = i;
+        }
+
+        return triangles;
     }
 
     private static VoxelCorners<float> GetVoxelDensities(Vector2Int position, NativeArray<float> densities, int chunkSize)
