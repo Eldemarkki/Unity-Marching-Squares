@@ -21,7 +21,6 @@ public class Chunk : MonoBehaviour
             {
                 int index = y * (chunkSize + 1) + x;
                 float density = (noise.snoise(new float2(x, y)) + 1) * 0.5f;
-                Debug.Log($"{x}, {y}: {density < isolevel}");
                 _densities[index] = density;
             }
         }
