@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unity.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public static class MarchingSquares
@@ -12,7 +13,7 @@ public static class MarchingSquares
         {
             for (int y = 0; y < chunkSize; y++)
             {
-                Vector2Int position = new Vector2Int(x, y);
+                int2 position = new int2(x, y);
                 VoxelCorners<float> voxelDensities = GetVoxelDensities(position, densities, chunkSize);
                 int squareIndex = CalculateSquareIndex(voxelDensities, isolevel);
                 if (squareIndex == 0)
@@ -20,15 +21,15 @@ public static class MarchingSquares
                     continue; // This voxel is completely outside the surface
                 }
 
-                Vector2 bottomLeft = position + Vector2.zero;
-                Vector2 bottomRight = position + Vector2.right;
-                Vector2 topRight = position + Vector2.up + Vector2.right;
-                Vector2 topLeft = position + Vector2.up;
+                float2 bottomLeft = position + SquareCorners[0];
+                float2 bottomRight = position + SquareCorners[1];
+                float2 topRight = position + SquareCorners[2];
+                float2 topLeft = position + SquareCorners[3];
 
-                Vector2 leftEdge = position + Vector2.up * 0.5f;
-                Vector2 topEdge = position + Vector2.up + Vector2.right * 0.5f;
-                Vector2 rightEdge = position + Vector2.right + Vector2.up * 0.5f;
-                Vector2 bottomEdge = position + Vector2.right * 0.5f;
+                float2 leftEdge = VertexInterpolate(bottomLeft, topLeft, voxelDensities.Corner1, voxelDensities.Corner4, isolevel);
+                float2 topEdge = VertexInterpolate(topLeft, topRight, voxelDensities.Corner4, voxelDensities.Corner3, isolevel);
+                float2 rightEdge = VertexInterpolate(bottomRight, topRight, voxelDensities.Corner2, voxelDensities.Corner3, isolevel);
+                float2 bottomEdge = VertexInterpolate(bottomLeft, bottomRight, voxelDensities.Corner1, voxelDensities.Corner2, isolevel);
 
                 if (squareIndex == 1)
                 {
@@ -83,7 +84,7 @@ public static class MarchingSquares
                     CreateTriangle(topLeft, topEdge, bottomEdge, vertices);
                     CreateTriangle(topLeft, bottomEdge, bottomLeft, vertices);
                 }
-                else if(squareIndex == 10)
+                else if (squareIndex == 10)
                 {
                     float average = (voxelDensities.Corner1 + voxelDensities.Corner2 + voxelDensities.Corner3 + voxelDensities.Corner4) / 4f;
                     if (average < isolevel)
@@ -99,30 +100,30 @@ public static class MarchingSquares
                         CreateTriangle(topLeft, topEdge, leftEdge, vertices);
                     }
                 }
-                else if(squareIndex == 11)
+                else if (squareIndex == 11)
                 {
                     CreateTriangle(topLeft, topEdge, bottomLeft, vertices);
                     CreateTriangle(bottomLeft, topEdge, rightEdge, vertices);
                     CreateTriangle(bottomLeft, rightEdge, bottomRight, vertices);
                 }
-                else if(squareIndex == 12)
+                else if (squareIndex == 12)
                 {
                     CreateTriangle(topLeft, topRight, leftEdge, vertices);
                     CreateTriangle(leftEdge, topRight, rightEdge, vertices);
                 }
-                else if(squareIndex == 13)
+                else if (squareIndex == 13)
                 {
                     CreateTriangle(bottomLeft, topLeft, bottomEdge, vertices);
                     CreateTriangle(topLeft, rightEdge, bottomEdge, vertices);
                     CreateTriangle(topLeft, topRight, rightEdge, vertices);
                 }
-                else if(squareIndex == 14)
+                else if (squareIndex == 14)
                 {
                     CreateTriangle(topLeft, topRight, leftEdge, vertices);
                     CreateTriangle(leftEdge, topRight, bottomEdge, vertices);
                     CreateTriangle(bottomEdge, topRight, bottomRight, vertices);
                 }
-                else if(squareIndex == 15)
+                else if (squareIndex == 15)
                 {
                     CreateTriangle(bottomLeft, topLeft, bottomRight, vertices);
                     CreateTriangle(topLeft, topRight, bottomRight, vertices);
@@ -158,14 +159,14 @@ public static class MarchingSquares
         return triangles;
     }
 
-    private static VoxelCorners<float> GetVoxelDensities(Vector2Int position, NativeArray<float> densities, int chunkSize)
+    private static VoxelCorners<float> GetVoxelDensities(int2 position, NativeArray<float> densities, int chunkSize)
     {
         VoxelCorners<float> voxelDensities = new VoxelCorners<float>();
 
         for (int i = 0; i < 4; i++)
         {
-            Vector2Int cornerPosition = position + SquareCorners[i];
-            int index = cornerPosition.x * chunkSize + cornerPosition.y;
+            int2 cornerPosition = position + SquareCorners[i];
+            int index = cornerPosition.y * (chunkSize + 1) + cornerPosition.x;
             voxelDensities[i] = densities[index];
         }
 
@@ -176,19 +177,24 @@ public static class MarchingSquares
     {
         int cubeIndex = 0;
 
-        if (densities.Corner1 < isolevel) { cubeIndex |= 1; }
-        if (densities.Corner2 < isolevel) { cubeIndex |= 2; }
-        if (densities.Corner3 < isolevel) { cubeIndex |= 4; }
-        if (densities.Corner4 < isolevel) { cubeIndex |= 8; }
+        if (densities.Corner1 <= isolevel) { cubeIndex |= 1; }
+        if (densities.Corner2 <= isolevel) { cubeIndex |= 2; }
+        if (densities.Corner3 <= isolevel) { cubeIndex |= 4; }
+        if (densities.Corner4 <= isolevel) { cubeIndex |= 8; }
 
         return cubeIndex;
     }
 
-    public static Vector2Int[] SquareCorners =
+    private static float2 VertexInterpolate(float2 p1, float2 p2, float v1, float v2, float isolevel)
     {
-        new Vector2Int(0, 0),
-        new Vector2Int(1, 0),
-        new Vector2Int(1, 1),
-        new Vector2Int(0, 1)
+        return p1 + (isolevel - v1) * (p2 - p1) / (v2 - v1);
+    }
+
+    public static int2[] SquareCorners =
+    {
+        new int2(0, 0),
+        new int2(1, 0),
+        new int2(1, 1),
+        new int2(0, 1),
     };
 }
