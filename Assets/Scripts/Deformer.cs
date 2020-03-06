@@ -26,6 +26,11 @@ namespace Eldemarkki.MarchingSquares
             {
                 DeformTerrain(cam.ScreenToWorldPoint(Input.mousePosition), false);
             }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                radius += Input.mouseScrollDelta.y * 0.2f;
+            }
         }
 
         private void DeformTerrain(Vector2 worldPosition, bool addTerrain)
