@@ -12,10 +12,10 @@ namespace Eldemarkki.MarchingSquares
 
         [Header("Chunk settings")]
         [Range(1, 64), SerializeField] private int chunkSize = 16;
-        [SerializeField] private Chunk chunkPrefab;
+        [SerializeField] private Chunk chunkPrefab = null;
 
         [Header("Marching Cubes settings")]
-        [Range(-1f, 1f), SerializeField] private float isolevel;
+        [Range(-1f, 1f), SerializeField] private float isolevel = 0;
 
         private Dictionary<Vector2Int, Chunk> chunks;
 

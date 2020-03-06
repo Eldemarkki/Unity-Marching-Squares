@@ -5,9 +5,9 @@ namespace Eldemarkki.MarchingSquares
 {
     public class Deformer : MonoBehaviour
     {
-        [SerializeField] private World target;
+        [SerializeField] private World target = null;
 
-        [SerializeField] private float radius;
+        [SerializeField] private float radius = 5;
 
         private Camera cam;
 
