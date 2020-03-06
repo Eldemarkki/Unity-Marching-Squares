@@ -58,7 +58,7 @@ namespace Eldemarkki.MarchingSquares
             coordinate = chunkCoordinate;
             this.chunkSize = chunkSize;
             this.isolevel = isolevel;
-            this.noiseOffset = (Vector2)transform.position;
+            this.noiseOffset = noiseOffset;
         }
 
         public void SetDensity(Vector2Int densityPosition, float newDensity)

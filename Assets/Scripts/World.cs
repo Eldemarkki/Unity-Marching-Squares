@@ -33,7 +33,7 @@ namespace Eldemarkki.MarchingSquares
                     Vector2Int chunkCoordinate = new Vector2Int(x, y);
 
                     Chunk chunk = Instantiate(chunkPrefab, (Vector2)chunkCoordinate * chunkSize, Quaternion.identity, transform);
-                    chunk.Initialize(chunkCoordinate, chunkSize, isolevel, Vector2.zero);
+                    chunk.Initialize(chunkCoordinate, chunkSize, isolevel, chunkCoordinate.ToFloat2() * chunkSize);
                     chunks.Add(chunkCoordinate, chunk);
                 }
             }

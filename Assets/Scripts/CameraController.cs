@@ -1,39 +1,42 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
-public class CameraController : MonoBehaviour
+namespace Eldemarkki.MarchingSquares
 {
-    [Header("Zoom")]
-    [SerializeField] private float zoomSpeed = 300;
-    [SerializeField] private float minCameraSize = 5;
-    [SerializeField] private float maxCameraSize = 200;
-
-    private Vector2 startDragMousePosition;
-    
-    private Camera cam;
-
-    private void Awake()
+    [RequireComponent(typeof(Camera))]
+    public class CameraController : MonoBehaviour
     {
-        cam = GetComponent<Camera>();
-    }
+        [Header("Zoom")]
+        [SerializeField] private float zoomSpeed = 300;
+        [SerializeField] private float minCameraSize = 5;
+        [SerializeField] private float maxCameraSize = 200;
 
-    void Update()
-    {
-        // Zoom
-        if (!Input.GetKey(KeyCode.LeftShift))
+        private Vector2 startDragMousePosition;
+
+        private Camera cam;
+
+        private void Awake()
         {
-            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + -Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime, minCameraSize, maxCameraSize);
+            cam = GetComponent<Camera>();
         }
 
-        // Dragging movement
-        if (Input.GetMouseButtonDown(2))
+        void Update()
         {
-            startDragMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        }
+            // Zoom
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + -Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime, minCameraSize, maxCameraSize);
+            }
 
-        if (Input.GetMouseButton(2))
-        {
-            transform.position -= (Vector3)((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - startDragMousePosition);
+            // Dragging movement
+            if (Input.GetMouseButtonDown(2))
+            {
+                startDragMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            }
+
+            if (Input.GetMouseButton(2))
+            {
+                transform.position -= (Vector3)((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - startDragMousePosition);
+            }
         }
     }
 }

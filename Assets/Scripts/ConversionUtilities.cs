@@ -9,5 +9,10 @@ namespace Eldemarkki.MarchingSquares.Utilities
         {
             return new Vector2Int(v.x, v.y);
         }
+
+        public static float2 ToFloat2(this Vector2Int v)
+        {
+            return new float2(v.x, v.y);
+        }
     }
 }
