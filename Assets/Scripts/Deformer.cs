@@ -8,28 +8,34 @@ namespace Eldemarkki.MarchingSquares
         [SerializeField] private World target = null;
 
         [SerializeField] private float radius = 5;
+        [SerializeField] private Transform radiusIndicator;
 
         private Camera cam;
 
         private void Awake()
         {
             cam = Camera.main;
+            radiusIndicator.localScale = Vector3.one * radius * 2;
         }
 
         private void Update()
         {
+            Vector2 mouseWorldPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            radiusIndicator.position = new Vector3(mouseWorldPosition.x, mouseWorldPosition.y, -1);
+
             if (Input.GetMouseButton(0)) // Left mouse button
             {
-                DeformTerrain(cam.ScreenToWorldPoint(Input.mousePosition), true);
+                DeformTerrain(mouseWorldPosition, true);
             }
             else if (Input.GetMouseButton(1)) // Right mouse button
             {
-                DeformTerrain(cam.ScreenToWorldPoint(Input.mousePosition), false);
+                DeformTerrain(mouseWorldPosition, false);
             }
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 radius += Input.mouseScrollDelta.y * 0.2f;
+                radiusIndicator.localScale = Vector3.one * radius * 2;
             }
         }
 
