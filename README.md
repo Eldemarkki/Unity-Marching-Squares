@@ -7,6 +7,7 @@ This is my implementation of the Marching Squares algorithm using Unity.
 ## Usage
   - **Add using the left mouse button**
   - **Remove using the right mouse button**
+  - Change brush size with Left Shift + mouse scroll
   - Move around using the middle mouse button and dragging
   - Zoom using the scroll wheel
   - Change the world size in the World GameObject
