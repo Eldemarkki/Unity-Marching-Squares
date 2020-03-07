@@ -21,21 +21,25 @@ namespace Eldemarkki.MarchingSquares
 
         void Update()
         {
+            Vector2 mouseWorldPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+
             // Zoom
             if (!Input.GetKey(KeyCode.LeftShift))
             {
-                cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + -Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime, minCameraSize, maxCameraSize);
+                float zoomAmount = Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime;
+                transform.position += (Vector3)(mouseWorldPosition - (Vector2)transform.position) * (zoomAmount / cam.orthographicSize);
+                cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - zoomAmount, minCameraSize, maxCameraSize);
             }
 
             // Dragging movement
             if (Input.GetMouseButtonDown(2))
             {
-                startDragMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+                startDragMousePosition = mouseWorldPosition;
             }
 
             if (Input.GetMouseButton(2))
             {
-                transform.position -= (Vector3)((Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - startDragMousePosition);
+                transform.position -= (Vector3)(mouseWorldPosition - startDragMousePosition);
             }
         }
     }
